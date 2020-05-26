@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo logging into AWS ECR...
+      - $(aws ecr get-login --no-include-email --region us-east-1)
+  build:
+    commands:
+      - echo Building Deno Docker Image
+      - docker build -t deno-explo
+      - docker tag deno-explo:latest 843117870902.dkr.ecr.us-east-1.amazonaws.com/deno-explo:latest
+  post_build:
+    commands:
+      - echo build Docker image complete
+      - docker push 843117870902.dkr.ecr.us-east-1.amazonaws.com/deno-explo:latest
