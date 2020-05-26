@@ -8,7 +8,7 @@ phases:
   build:
     commands:
       - echo Building Deno Docker Image
-      - docker build -t deno-explo
+      - docker build -t deno-explo .
       - docker tag deno-explo:latest 843117870902.dkr.ecr.us-east-1.amazonaws.com/deno-explo:latest
   post_build:
     commands:
